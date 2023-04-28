@@ -120,12 +120,14 @@ class _HomePageState extends State<HomePage> {
                         AnimatedDefaultTextStyle(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeInOut,
-                          style:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    color: ledState
-                                        ? const Color.fromARGB(255, 48, 15, 113)
-                                        : Colors.lightBlue[200],
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                color: ledState
+                                    ? const Color.fromARGB(255, 48, 15, 113)
+                                    : Colors.lightBlue[200],
+                              ),
                           child: AnimatedSwitcher(
                             switchInCurve: Curves.easeInOut,
                             switchOutCurve: Curves.easeInOut,
@@ -182,7 +184,7 @@ class _HomePageState extends State<HomePage> {
           AnimatedDefaultTextStyle(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: ledState
                       ? const Color.fromARGB(255, 11, 58, 120)
                       : Colors.blue[100],

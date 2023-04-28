@@ -1,8 +1,10 @@
-// import 'package:android_intent_plus/android_intent.dart';
+import 'dart:developer';
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_ptp/utils/constants.dart';
-import 'dart:developer';
+import 'package:device_info_plus/device_info_plus.dart';
+// import 'package:android_intent_plus/android_intent.dart';
 
 enum NetworkState {
   initial,
@@ -59,9 +61,13 @@ class LedProvider extends ChangeNotifier {
 
   Future<void> setLedState(bool state) async {
     // Intent
+    // final deviceInfo = DeviceInfoPlugin();
+    // final androidInfo = await deviceInfo.androidInfo;
 
-    // AndroidIntent(action: 'action_internet_connectivity').launch();
-
+    // if (androidInfo.version.sdkInt >= 29 /*Android Q*/) {
+    //   await const AndroidIntent(action: 'action_internet_connectivity')
+    //       .launch();
+    // }
     _networkState = NetworkState.syncing;
     notifyListeners();
 

@@ -33,16 +33,16 @@ class _AppState extends State<App> {
         theme: ThemeData(
           fontFamily: 'PlayfairDisplay',
           textTheme: const TextTheme(
-            headline4: TextStyle(
+            headlineMedium: TextStyle(
               fontSize: 27,
               fontWeight: FontWeight.w500,
               fontStyle: FontStyle.italic,
             ),
-            bodyText1: TextStyle(
+            bodyLarge: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w500,
             ),
-            bodyText2: TextStyle(
+            bodyMedium: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               fontStyle: FontStyle.italic,
