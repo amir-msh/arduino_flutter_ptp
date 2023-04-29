@@ -43,7 +43,7 @@ void setup() {
     Serial.begin(115200);
     Serial.print("\n\nConfiguring AP ...");
 
-    WiFi.softAP(ssid, password, 11, true);
+    WiFi.softAP(ssid, password, 1, true);
 
     pinMode(ledPin, OUTPUT);
     digitalWrite(ledPin, true);
