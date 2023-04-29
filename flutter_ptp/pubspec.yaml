@@ -16,6 +16,9 @@ dependencies:
   # settings_panel_android: ^0.1.3
   android_intent_plus: ^3.1.9
   device_info_plus: ^8.2.2
+  app_settings: ^4.2.0
+  connectivity_plus: ^3.0.6
+  wifi_iot: ^0.3.18
 
 dev_dependencies:
   flutter_test:

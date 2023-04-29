@@ -1,47 +1,62 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const char *ssid = "IOT LED";
+#define ledPin BUILTIN_LED
+
+const char *ssid = "IOT-LED";
 const char *password = "iot02461357";
+
+const char* ledValueArgName = "value";
 
 ESP8266WebServer server(80);
 
-void handleSentVar() {
-    const char* ledValueArgName = "value";
-    Serial.println("handleSentVar function called...");
-    if (server.hasArg(ledValueArgName)) {
-        Serial.println("Sensor reading received...");
+void handleLedValueSet() {
+    Serial.println("handleLedValueSet()");
 
+    if (server.hasArg(ledValueArgName)) {
         int value = server.arg(ledValueArgName).toInt();
 
-        Serial.print("Reading: ");
+        Serial.print("Value: ");
         Serial.println(value);
-        Serial.println();
 
-        digitalWrite(BUILTIN_LED, !(bool) value);
+        digitalWrite(ledPin, !(bool) value);
 
-        // analogWrite(LED_BUILTIN, pwmValSqrt);
-        server.send(200, "text/html", "Data received");
+        server.send(200, "text/html", "Setting the LED value was successful!");
     }
+}
+
+void handleLedValueGet() {
+    Serial.println("handleLedValueGet()");
+
+    int value = (int) digitalRead(ledPin);
+
+    String json = "{\"value\"=" + String(value) + "}";
+    server.send(200, "application/json", json);
+}
+
+void handleNotFound() {
+    server.send(404, "text/html", "Oops! There's no page here :O");
 }
 
 void setup() {
     delay(1500);
     Serial.begin(115200);
-    Serial.println();
-    Serial.print("Configuring access point...");
+    Serial.print("\n\nConfiguring AP ...");
 
     WiFi.softAP(ssid, password, 11, true);
 
-    pinMode(BUILTIN_LED, OUTPUT);
-    digitalWrite(BUILTIN_LED, false);
+    pinMode(ledPin, OUTPUT);
+    digitalWrite(ledPin, false);
 
-    IPAddress myIP = WiFi.softAPIP();
+    IPAddress ip = WiFi.softAPIP();
     Serial.print("AP IP address: ");
-    Serial.println(myIP);
-    server.on("/", HTTP_GET, handleSentVar);
+    Serial.println(ip);
+
+    server.on("/", HTTP_GET, handleLedValueSet);
+    server.on("/value", HTTP_GET, handleLedValueGet);
+    server.onNotFound(handleNotFound);
     server.begin();
-    Serial.println("HTTP server started");
+    Serial.println("* The HTTP server is started! *");
 }
 
 

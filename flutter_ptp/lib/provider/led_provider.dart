@@ -60,14 +60,31 @@ class LedProvider extends ChangeNotifier {
   }
 
   Future<void> setLedState(bool state) async {
-    // Intent
-    // final deviceInfo = DeviceInfoPlugin();
-    // final androidInfo = await deviceInfo.androidInfo;
+    // {
+    //   final deviceInfo = DeviceInfoPlugin();
+    //   final androidInfo = await deviceInfo.androidInfo;
 
-    // if (androidInfo.version.sdkInt >= 29 /*Android Q*/) {
-    //   await const AndroidIntent(action: 'action_internet_connectivity')
-    //       .launch();
+    //   if (androidInfo.version.sdkInt >= 29 /*Android Q*/) {
+    //     await const AndroidIntent(
+    //       action: 'settings.panel.action_wifi',
+    //     )
+    //         // await const AndroidIntent(action: 'android.settings.SETTINGS')
+    //         .launch();
+
+    //     return;
+    //   }
     // }
+
+    // AppSettings.openWIFISettings()
+    // final connectivityResult = await (Connectivity().checkConnectivity());
+
+    // WiFiForIoTPlugin.connect(STA_DEFAULT_SSID,
+    // password: STA_DEFAULT_PASSWORD,
+    // joinOnce: true,
+    // security: STA_DEFAULT_SECURITY)
+
+    // WiFiForIoTPlugin.removeWifiNetwork(poCommand.argument);
+
     _networkState = NetworkState.syncing;
     notifyListeners();
 
