@@ -28,9 +28,9 @@ void handleLedValueSet() {
 void handleLedValueGet() {
     Serial.println("handleLedValueGet()");
 
-    int value = (int) digitalRead(ledPin);
+    int value = (int) !(bool)digitalRead(ledPin);
 
-    String json = "{\"value\"=" + String(value) + "}";
+    String json = "{\"value\":" + String(value) + "}";
     server.send(200, "application/json", json);
 }
 
@@ -46,7 +46,7 @@ void setup() {
     WiFi.softAP(ssid, password, 11, true);
 
     pinMode(ledPin, OUTPUT);
-    digitalWrite(ledPin, false);
+    digitalWrite(ledPin, true);
 
     IPAddress ip = WiFi.softAPIP();
     Serial.print("AP IP address: ");

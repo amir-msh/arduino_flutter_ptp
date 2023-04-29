@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Positioned.fill(
             child: AnimatedContainer(
+              constraints: const BoxConstraints.expand(),
               duration: const Duration(milliseconds: 360),
               curve: Curves.easeInOut,
               decoration: BoxDecoration(
@@ -113,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                           child: SvgPicture.asset(
                             "assets/icons/led_${ledState ? 'on' : 'off'}.svg",
                             height: 125,
-                            key: ValueKey(ledState),
+                            // key: ValueKey(ledState),
                           ),
                         ),
                         const SizedBox(height: 10),
